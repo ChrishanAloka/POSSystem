@@ -22,7 +22,7 @@ function ExpenseTable() {
   const fetchExpenses = async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/expenses');
+      const response = await axios.get('https://possystem-mjwb.onrender.com/api/expenses');
       setExpenses(response.data);
     } catch (err) {
       setError('Failed to fetch expenses.');
@@ -41,7 +41,7 @@ function ExpenseTable() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.put(`http://localhost:5000/api/expenses/${editExpense}`, editFormData);
+      await axios.put(`https://possystem-mjwb.onrender.com/api/expenses/${editExpense}`, editFormData);
       setExpenses(expenses.map((exp) => (exp._id === editExpense ? { ...exp, ...editFormData } : exp)));
       setEditExpense(null);
     } catch (err) {
@@ -55,7 +55,7 @@ function ExpenseTable() {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/expenses/${deleteConfirm._id}`);
+      await axios.delete(`https://possystem-mjwb.onrender.com/api/expenses/${deleteConfirm._id}`);
       setExpenses(expenses.filter((exp) => exp._id !== deleteConfirm._id));
       setDeleteConfirm(null);
     } catch (err) {

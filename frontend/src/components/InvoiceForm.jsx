@@ -23,7 +23,7 @@ function InvoiceForm() {
 
   const fetchLatestInvoiceNo = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/invoices/latest');
+      const res = await axios.get('https://possystem-mjwb.onrender.com/api/invoices/latest');
       const latestNo = res.data.latestNo || 0;
       const nextNo = latestNo + 1;
       // Ensure invoice number is padded to 5 digits after "INV" (total 8 characters)
@@ -167,7 +167,7 @@ function InvoiceForm() {
         quotationId,
         status: 'pending',
       };
-      await axios.post('http://localhost:5000/api/invoices', invoiceData);
+      await axios.post('https://possystem-mjwb.onrender.com/api/invoices', invoiceData);
       await generatePDF();
       navigate('/invoices');
     } catch (err) {

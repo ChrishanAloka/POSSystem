@@ -20,7 +20,7 @@ function SupplierEditForm() {
     const fetchSupplier = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/suppliers/${id}`);
+        const response = await axios.get(`https://possystem-mjwb.onrender.com/api/suppliers/${id}`);
         setFormData(response.data);
       } catch (err) {
         setError('Failed to fetch supplier details. Please try again.');
@@ -42,7 +42,7 @@ function SupplierEditForm() {
     setLoading(true);
     setError('');
     try {
-      await axios.put(`http://localhost:5000/api/suppliers/${id}`, formData);
+      await axios.put(`https://possystem-mjwb.onrender.com/api/suppliers/${id}`, formData);
       navigate('/suppliers');
     } catch (err) {
       setError('Failed to update supplier. Please check the data and try again.');

@@ -21,7 +21,7 @@ function ProductEditForm() {
     const fetchProduct = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const response = await axios.get(`https://possystem-mjwb.onrender.com/api/products/${id}`);
         const { grnNo, name, category, quantity, price, supplierId } = response.data;
         // Set supplierId to the _id if populated, otherwise null
         const validSupplierId = supplierId && typeof supplierId === 'object' && supplierId._id 
@@ -48,7 +48,7 @@ function ProductEditForm() {
     setLoading(true);
     setError('');
     try {
-      await axios.put(`http://localhost:5000/api/products/${id}`, formData);
+      await axios.put(`https://possystem-mjwb.onrender.com/api/products/${id}`, formData);
       navigate('/products');
     } catch (err) {
       setError('Failed to update product. Please check the data and try again.');

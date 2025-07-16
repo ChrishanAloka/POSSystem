@@ -19,7 +19,7 @@ function UserDetails() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/auth/users', {
+      const res = await axios.get('https://possystem-mjwb.onrender.com/api/auth/users', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setUsers(res.data);
@@ -39,7 +39,7 @@ function UserDetails() {
     setLoading(true);
     try {
       await axios.put(
-        `http://localhost:5000/api/auth/users/${editUser._id}`,
+        `https://possystem-mjwb.onrender.com/api/auth/users/${editUser._id}`,
         {
           username: editUser.username,
           email: editUser.email,
@@ -58,7 +58,7 @@ function UserDetails() {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      await axios.delete(`http://localhost:5000/api/auth/users/${deleteConfirm._id}`, {
+      await axios.delete(`https://possystem-mjwb.onrender.com/api/auth/users/${deleteConfirm._id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setUsers(users.filter((u) => u._id !== deleteConfirm._id));

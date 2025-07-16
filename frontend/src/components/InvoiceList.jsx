@@ -16,7 +16,7 @@ function InvoiceList() {
   const fetchInvoices = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/invoices');
+      const res = await axios.get('https://possystem-mjwb.onrender.com/api/invoices');
       setInvoices(res.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch invoices');
@@ -28,7 +28,7 @@ function InvoiceList() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this invoice?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/invoices/${id}`);
+        await axios.delete(`https://possystem-mjwb.onrender.com/api/invoices/${id}`);
         setInvoices(invoices.filter(invoice => invoice._id !== id));
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to delete invoice');

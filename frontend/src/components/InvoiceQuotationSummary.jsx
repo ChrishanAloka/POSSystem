@@ -17,7 +17,7 @@ function InvoiceQuotationSummary() {
   const fetchSummaries = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/summary');
+      const res = await axios.get('https://possystem-mjwb.onrender.com/api/summary');
       setSummaries(res.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch summary');
@@ -29,7 +29,7 @@ function InvoiceQuotationSummary() {
   const handleDelete = async (quotationId, invoiceId) => {
     if (window.confirm('Are you sure you want to delete this record? This will delete the quotation and associated invoice (if any).')) {
       try {
-        await axios.delete(`http://localhost:5000/api/summary/${quotationId}`, {
+        await axios.delete(`https://possystem-mjwb.onrender.com/api/summary/${quotationId}`, {
           data: { invoiceId }
         });
         setSummaries(summaries.filter(summary => summary.quotationId !== quotationId));

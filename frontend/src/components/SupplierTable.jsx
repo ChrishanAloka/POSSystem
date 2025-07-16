@@ -13,7 +13,7 @@ function SupplierTable() {
 
   const fetchSuppliers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/suppliers');
+      const response = await axios.get('https://possystem-mjwb.onrender.com/api/suppliers');
       setSuppliers(response.data);
     } catch (error) {
       console.error(error);
@@ -23,7 +23,7 @@ function SupplierTable() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this supplier?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/suppliers/${id}`);
+        await axios.delete(`https://possystem-mjwb.onrender.com/api/suppliers/${id}`);
         fetchSuppliers();
       } catch (error) {
         console.error(error);

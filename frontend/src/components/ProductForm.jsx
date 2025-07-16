@@ -25,7 +25,7 @@ function ProductForm() {
       const fetchSupplier = async () => {
         setLoading(true);
         try {
-          const response = await axios.get(`http://localhost:5000/api/suppliers/${supplierObjectId}`);
+          const response = await axios.get(`https://possystem-mjwb.onrender.com/api/suppliers/${supplierObjectId}`);
           const { _id, supplierId, name } = response.data;
           setFormData((prev) => ({ ...prev, supplierId: _id })); // Use the Supplier's ObjectId
           setCustomSupplierId(supplierId); // Store the custom supplierId for display
@@ -51,7 +51,7 @@ function ProductForm() {
     setLoading(true);
     setError('');
     try {
-      await axios.post('http://localhost:5000/api/products', formData);
+      await axios.post('https://possystem-mjwb.onrender.com/api/products', formData);
       navigate('/products');
     } catch (err) {
       setError('Failed to add product. Please check the data and try again.');

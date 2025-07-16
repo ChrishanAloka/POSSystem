@@ -12,7 +12,7 @@ function ExpenseForm() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/expenses/categories');
+        const response = await axios.get('https://possystem-mjwb.onrender.com/api/expenses/categories');
         setCategories(response.data);
       } catch (err) {
         setError('Failed to fetch categories.');
@@ -30,9 +30,9 @@ function ExpenseForm() {
     e.preventDefault();
     if (!newCategory) return;
     try {
-      await axios.post('http://localhost:5000/api/expenses/categories', { name: newCategory });
+      await axios.post('https://possystem-mjwb.onrender.com/api/expenses/categories', { name: newCategory });
       setNewCategory('');
-      const response = await axios.get('http://localhost:5000/api/expenses/categories');
+      const response = await axios.get('https://possystem-mjwb.onrender.com/api/expenses/categories');
       setCategories(response.data);
     } catch (err) {
       setError('Failed to add category.');
@@ -43,7 +43,7 @@ function ExpenseForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/expenses', {
+      await axios.post('https://possystem-mjwb.onrender.com/api/expenses', {
         name: formData.name,
         price: parseFloat(formData.price),
         description: formData.description || '',

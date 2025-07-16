@@ -14,7 +14,7 @@ function SupplierPaymentDetails() {
     const fetchPaymentData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:5000/api/suppliers/${id}/payment`);
+        const response = await axios.get(`https://possystem-mjwb.onrender.com/api/suppliers/${id}/payment`);
         setPaymentData(response.data);
       } catch (err) {
         setError('Failed to fetch payment details. Please try again.');

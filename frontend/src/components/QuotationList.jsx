@@ -19,7 +19,7 @@ function QuotationList() {
   const fetchQuotations = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/quotations');
+      const res = await axios.get('https://possystem-mjwb.onrender.com/api/quotations');
       setQuotations(res.data);
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch quotations');
@@ -30,7 +30,7 @@ function QuotationList() {
 
   const updateStatus = async (id, status) => {
     try {
-      const updatedQuotation = await axios.put(`http://localhost:5000/api/quotations/${id}`, { status });
+      const updatedQuotation = await axios.put(`https://possystem-mjwb.onrender.com/api/quotations/${id}`, { status });
       setQuotations(quotations.map(q => q._id === id ? updatedQuotation.data : q));
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to update status');
@@ -40,7 +40,7 @@ function QuotationList() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this quotation?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/quotations/${id}`);
+        await axios.delete(`https://possystem-mjwb.onrender.com/api/quotations/${id}`);
         setQuotations(quotations.filter(q => q._id !== id));
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to delete quotation');
@@ -56,7 +56,7 @@ function QuotationList() {
     e.preventDefault();
     try {
       const { _id, quotationNo, customerName, address, jobScope, items, materialCost, laborCost, total } = editQuotation;
-      await axios.put(`http://localhost:5000/api/quotations/${_id}`, {
+      await axios.put(`https://possystem-mjwb.onrender.com/api/quotations/${_id}`, {
         quotationNo,
         customerName,
         address,
