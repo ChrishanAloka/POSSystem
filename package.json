@@ -1,0 +1,56 @@
+{
+  "name": "pos-system",
+  "version": "1.0.0",
+  "main": "electron/main.js",
+  "description": "A Point of Sale system for managing inventory, sales, and employees",
+  "author": "Your Name <your.email@example.com>",
+  "license": "ISC",
+  "scripts": {
+    "start": "electron .",
+    "build": "cd frontend && npm run build && cd ../backend && npm install && cd ..",
+    "package": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^26.2.4",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.example.pos",
+    "productName": "POS System",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "frontend/public/favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "files": [
+      "electron/**/*",
+      "backend/**/*",
+      "frontend/dist/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/",
+        "to": "backend/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0"
+  }
+}
