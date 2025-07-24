@@ -11,8 +11,13 @@ const invoiceRoutes = require('./routes/invoices');
 const summaryRoutes = require('./routes/summary');
 const path = require('path');
 
-// Explicitly load .env from backend directory
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+// Load .env from backend directory
+const envPath = path.resolve(__dirname, '.env');
+const result = dotenv.config({ path: envPath });
+if (result.error) {
+  console.error('Error loading .env file:', result.error.message);
+  process.exit(1);
+}
 
 const startServer = async () => {
   const dbConnected = await connectDB();
@@ -40,7 +45,18 @@ const startServer = async () => {
   });
 
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+  server.on('error', (err) => {
+    console.error('Server error:', err.message);
+    if (err.code === 'EADDRINUSE') {
+      console.error(`Port ${PORT} is already in use. Please free the port and try again.`);
+      process.exit(1);
+    }
+  });
 };
 
-startServer();
+startServer().catch((err) => {
+  console.error('Failed to start server:', err.message);
+  process.exit(1);
+});
