@@ -20,10 +20,10 @@ function ReportForm() {
     setLoading(true);
     try {
       const [usersRes, employeesRes, attendanceRes, salariesRes] = await Promise.all([
-        axios.get('https://possystem-mjwb.onrender.com/api/auth/users', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('https://possystem-mjwb.onrender.com/api/employee/employees', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('https://possystem-mjwb.onrender.com/api/attendance/records', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
-        axios.get('https://possystem-mjwb.onrender.com/api/salary/calculate?month=' + new Date().toLocaleString('default', { month: 'long', year: 'numeric' }), { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('https://possystem-eo7h.onrender.com/api/auth/users', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('https://possystem-eo7h.onrender.com/api/employee/employees', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('https://possystem-eo7h.onrender.com/api/attendance/records', { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
+        axios.get('https://possystem-eo7h.onrender.com/api/salary/calculate?month=' + new Date().toLocaleString('default', { month: 'long', year: 'numeric' }), { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }),
       ]);
       setUsers(usersRes.data);
       setEmployees(employeesRes.data);

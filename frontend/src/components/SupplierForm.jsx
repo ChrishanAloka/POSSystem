@@ -20,7 +20,7 @@ function SupplierForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://possystem-mjwb.onrender.com/api/suppliers', formData);
+      await axios.post('https://possystem-eo7h.onrender.com/api/suppliers', formData);
       setFormData({ supplierId: '', name: '', nic: '', address: '', phone: '' });
       navigate('/suppliers');
     } catch (error) {

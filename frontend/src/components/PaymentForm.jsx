@@ -15,7 +15,7 @@ function PaymentForm() {
     const fetchPaymentData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`https://possystem-mjwb.onrender.com/api/suppliers/${id}/payment`);
+        const response = await axios.get(`https://possystem-eo7h.onrender.com/api/suppliers/${id}/payment`);
         setPaymentData(response.data);
       } catch (err) {
         setError('Failed to fetch payment details. Please try again.');
@@ -41,9 +41,9 @@ function PaymentForm() {
         setError('Paid amount exceeds remaining amount.');
         return;
       }
-      await axios.post(`https://possystem-mjwb.onrender.com/api/suppliers/${id}/payment`, { amountPaid: paid });
+      await axios.post(`https://possystem-eo7h.onrender.com/api/suppliers/${id}/payment`, { amountPaid: paid });
       setPaidAmount('');
-      const response = await axios.get(`https://possystem-mjwb.onrender.com/api/suppliers/${id}/payment`);
+      const response = await axios.get(`https://possystem-eo7h.onrender.com/api/suppliers/${id}/payment`);
       setPaymentData(response.data);
       setError(paid === paymentData.remainingAmount ? 'Payment complete' : `Remaining amount: ${response.data.remainingAmount}`);
     } catch (err) {

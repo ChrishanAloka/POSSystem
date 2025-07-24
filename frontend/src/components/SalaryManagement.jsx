@@ -19,7 +19,7 @@ function SalaryManagement() {
   const fetchSalaries = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`https://possystem-mjwb.onrender.com/api/salary/calculate?month=${selectedMonth}`, {
+      const res = await axios.get(`https://possystem-eo7h.onrender.com/api/salary/calculate?month=${selectedMonth}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setSalaries(res.data);

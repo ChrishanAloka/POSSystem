@@ -25,7 +25,7 @@ function EmployeeRegister() {
     setLoading(true);
     setError('');
     try {
-      await axios.post('https://possystem-mjwb.onrender.com/api/employee/register', formData, {
+      await axios.post('https://possystem-eo7h.onrender.com/api/employee/register', formData, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       navigate('/employees');

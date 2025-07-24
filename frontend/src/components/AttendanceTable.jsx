@@ -19,7 +19,7 @@ function AttendanceTable() {
   const fetchAttendanceRecords = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('https://possystem-mjwb.onrender.com/api/attendance/records', {
+      const res = await axios.get('https://possystem-eo7h.onrender.com/api/attendance/records', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setAttendanceRecords(res.data);
@@ -39,7 +39,7 @@ function AttendanceTable() {
     setLoading(true);
     try {
       await axios.put(
-        `https://possystem-mjwb.onrender.com/api/attendance/records/${editRecord._id}`,
+        `https://possystem-eo7h.onrender.com/api/attendance/records/${editRecord._id}`,
         {
           status: editRecord.status,
           breakDuration: editRecord.status === 'Break' ? editRecord.breakDuration : 0,
@@ -58,7 +58,7 @@ function AttendanceTable() {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      await axios.delete(`https://possystem-mjwb.onrender.com/api/attendance/records/${deleteConfirm._id}`, {
+      await axios.delete(`https://possystem-eo7h.onrender.com/api/attendance/records/${deleteConfirm._id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setAttendanceRecords(attendanceRecords.filter((r) => r._id !== deleteConfirm._id));

@@ -23,7 +23,7 @@ function QuotationForm() {
 
   const fetchLatestQuotationNo = async () => {
     try {
-      const res = await axios.get('https://possystem-mjwb.onrender.com/api/quotations/latest');
+      const res = await axios.get('https://possystem-eo7h.onrender.com/api/quotations/latest');
       const latestNo = res.data.latestNo || 0;
       setQuotationNo(`0000${latestNo + 1}`.slice(-5));
     } catch (err) {
@@ -180,7 +180,7 @@ function QuotationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('https://possystem-mjwb.onrender.com/api/quotations', {
+      await axios.post('https://possystem-eo7h.onrender.com/api/quotations', {
         quotationNo,
         customerName,
         address,

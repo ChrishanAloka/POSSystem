@@ -21,7 +21,7 @@ function ConfirmationDetails() {
   const fetchConfirmedQuotations = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('https://possystem-mjwb.onrender.com/api/quotations');
+      const res = await axios.get('https://possystem-eo7h.onrender.com/api/quotations');
       setConfirmedQuotations(res.data.filter(q => q.status === 'confirm'));
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to fetch confirmed quotations');
@@ -38,7 +38,7 @@ function ConfirmationDetails() {
     e.preventDefault();
     try {
       const { _id, quotationNo, customerName, address, phone, jobScope, items, materialCost, laborCost, total } = editQuotation;
-      await axios.put(`https://possystem-mjwb.onrender.com/api/quotations/${_id}`, {
+      await axios.put(`https://possystem-eo7h.onrender.com/api/quotations/${_id}`, {
         quotationNo,
         customerName,
         address,
@@ -64,7 +64,7 @@ function ConfirmationDetails() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this quotation?')) {
       try {
-        await axios.delete(`https://possystem-mjwb.onrender.com/api/quotations/${id}`);
+        await axios.delete(`https://possystem-eo7h.onrender.com/api/quotations/${id}`);
         setConfirmedQuotations(confirmedQuotations.filter(q => q._id !== id));
       } catch (err) {
         setError(err.response?.data?.message || 'Failed to delete quotation');
@@ -80,7 +80,7 @@ function ConfirmationDetails() {
 
     try {
       if (remaining <= 0) {
-        await axios.put(`https://possystem-mjwb.onrender.com/api/quotations/${quotationId}`, { status: 'complete' });
+        await axios.put(`https://possystem-eo7h.onrender.com/api/quotations/${quotationId}`, { status: 'complete' });
         setConfirmedQuotations(confirmedQuotations.map(q => q._id === quotationId ? { ...q, status: 'complete' } : q));
       }
       alert(`Remaining Amount: LKR ${remaining.toFixed(2)} ${remaining <= 0 ? ' - Payment Complete' : ''}`);

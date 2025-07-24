@@ -22,7 +22,7 @@ function AttendanceMark() {
   const fetchEmployeeDetails = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`https://possystem-mjwb.onrender.com/api/employee/employees/${employeeId}`, {
+      const res = await axios.get(`https://possystem-eo7h.onrender.com/api/employee/employees/${employeeId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setEmployee(res.data);
@@ -41,7 +41,7 @@ function AttendanceMark() {
     setError('');
     try {
       await axios.post(
-        'https://possystem-mjwb.onrender.com/api/attendance/mark',
+        'https://possystem-eo7h.onrender.com/api/attendance/mark',
         {
           employeeId,
           status,

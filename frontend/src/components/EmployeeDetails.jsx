@@ -19,7 +19,7 @@ function EmployeeDetails() {
   const fetchEmployees = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('https://possystem-mjwb.onrender.com/api/employee/employees', {
+      const res = await axios.get('https://possystem-eo7h.onrender.com/api/employee/employees', {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setEmployees(res.data);
@@ -39,7 +39,7 @@ function EmployeeDetails() {
     setLoading(true);
     try {
       await axios.put(
-        `https://possystem-mjwb.onrender.com/api/employee/employees/${editEmployee._id}`,
+        `https://possystem-eo7h.onrender.com/api/employee/employees/${editEmployee._id}`,
         {
           employeeId: editEmployee.employeeId,
           name: editEmployee.name,
@@ -63,7 +63,7 @@ function EmployeeDetails() {
   const handleDelete = async () => {
     setLoading(true);
     try {
-      await axios.delete(`https://possystem-mjwb.onrender.com/api/employee/employees/${deleteConfirm._id}`, {
+      await axios.delete(`https://possystem-eo7h.onrender.com/api/employee/employees/${deleteConfirm._id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       });
       setEmployees(employees.filter((e) => e._id !== deleteConfirm._id));

@@ -30,7 +30,7 @@ function Register() {
     }
 
     try {
-      const res = await axios.post('https://possystem-mjwb.onrender.com/api/auth/register', {
+      const res = await axios.post('https://possystem-eo7h.onrender.com/api/auth/register', {
         username: formData.username,
         email: formData.email,
         password: formData.password,
