@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import headerImage from '../css/HeaderImage.jpg'
 
 function QuotationForm() {
   const [quotationNo, setQuotationNo] = useState('');
@@ -14,7 +15,7 @@ function QuotationForm() {
   const [laborCost, setLaborCost] = useState('');
   const [total, setTotal] = useState('');
   const [error, setError] = useState('');
-  const [headerImage, setHeaderImage] = useState(localStorage.getItem('quotationHeaderImage') || null);
+  // const [headerImage, setHeaderImage] = useState(localStorage.getItem('quotationHeaderImage') || null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -77,26 +78,51 @@ function QuotationForm() {
     }
   };
 
+  // Utility to convert image to base64
+const getBase64Image = (url) => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous'; // required for some cases
+    img.src = url;
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0);
+      const dataURL = canvas.toDataURL('image/png');
+      resolve(dataURL);
+    };
+
+    img.onerror = (err) => reject(err);
+  });
+};
+
   const generatePDF = async () => {
     const doc = new jsPDF();
-    
+    const imgWidth = 170; // in mm
+    const imgHeight = 59.35; // maintain aspect ratio
     let startY = 10;
-    if (headerImage) {
-      const imgWidth = 170;
-      const img = new Image();
-      img.src = headerImage;
+    // if (headerImage) {
+    //   const imgWidth = 170;
+    //   const img = new Image();
+    //   img.src = headerImage;
 
-      const loadImage = () => new Promise((resolve) => {
-        img.onload = () => resolve();
-        img.onerror = () => resolve();
-      });
-      await loadImage();
+    //   const loadImage = () => new Promise((resolve) => {
+    //     img.onload = () => resolve();
+    //     img.onerror = () => resolve();
+    //   });
+    //   await loadImage();
 
-      const imgHeight = (img.height * imgWidth) / img.width;
-      doc.addImage(headerImage, 'PNG', 20, 10, imgWidth, imgHeight);
-      startY = 10 + imgHeight + 5;
-    }
-
+    //   const imgHeight = (img.height * imgWidth) / img.width;
+    //   doc.addImage(headerImage, 'PNG', 20, 10, imgWidth, imgHeight);
+    //   startY = 10 + imgHeight + 5;
+    // }
+    const base64Image = await getBase64Image(headerImage);
+    doc.addImage(base64Image, 'PNG', 20, 10, imgWidth, imgHeight); // x=20, y=10
+    startY = 10 + imgHeight + 5;
     // Set font for document
     doc.setFont("helvetica", "normal");
     doc.setFontSize(10);
@@ -207,14 +233,17 @@ function QuotationForm() {
           <h3 className="text-xl font-semibold text-gray-700 mb-4">Quotation No: {quotationNo}</h3>
           <div className="mb-4">
             <h4 className="text-md font-medium text-gray-700 mb-2">Header Image</h4>
-            {headerImage ? (
+            <div className="relative">
+              <img src={headerImage} alt="Header" className="max-w-xs h-auto mb-2 rounded" />
+            </div>
+            {/* {headerImage ? (
               <div className="relative">
                 <img src={headerImage} alt="Header" className="max-w-xs h-auto mb-2 rounded" />
                 <button
                   onClick={handleDeleteImage}
                   className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-600 transition duration-300"
                 >
-                  Delete Image
+                  Delete Image  
                 </button>
               </div>
             ) : (
@@ -224,7 +253,7 @@ function QuotationForm() {
                 onChange={handleImageUpload}
                 className="w-full p-2 mb-4 border rounded"
               />
-            )}
+            )} */}
           </div>
         </div>
         <div className="bg-white p-6 rounded-xl shadow-lg">
